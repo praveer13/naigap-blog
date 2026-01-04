@@ -7,6 +7,7 @@ import Tag from "@/components/Tag.astro";
 import Datetime from "@/components/Datetime.astro";
 import EditPost from "@/components/EditPost.astro";
 import ShareLinks from "@/components/ShareLinks.astro";
+import Webmentions from "@/components/Webmentions.astro";
 import BackButton from "@/components/BackButton.astro";
 import BackToTopButton from "@/components/BackToTopButton.astro";
 import { getPath } from "@/utils/getPath";
@@ -33,6 +34,7 @@ const {
   timezone,
   tags,
   hideEditPost,
+  syndication,
 } = post.data;
 
 const { Content } = await render(post);
@@ -80,6 +82,9 @@ const currentPostIndex = allPosts.findIndex(a => a.id === post.id);
 const prevPost = currentPostIndex !== 0 ? allPosts[currentPostIndex - 1] : null;
 const nextPost =
   currentPostIndex !== allPosts.length ? allPosts[currentPostIndex + 1] : null;
+
+// Full URL for webmentions
+const postUrl = new URL(getPath(post.id, post.filePath), SITE.website).href;
 ---
 
 <Layout {...layoutProps}>
@@ -87,17 +92,24 @@ const nextPost =
   <BackButton />
   <main
     id="main-content"
-    class:list={["app-layout pb-12", { "mt-8": !SITE.showBackButton }]}
+    class:list={["app-layout pb-12 h-entry", { "mt-8": !SITE.showBackButton }]}
     data-pagefind-body
   >
+    <!-- Hidden author h-card for microformats -->
+    <div class="p-author h-card hidden">
+      <a class="u-url p-name" href={SITE.website}>{author}</a>
+      <a class="u-url" rel="me" href="https://x.com/praveer_n">Twitter</a>
+    </div>
+
     <h1
       transition:name={slugifyStr(title)}
-      class="inline-block text-2xl font-bold text-accent sm:text-3xl"
+      class="p-name inline-block text-2xl font-bold text-accent sm:text-3xl"
     >
       {title}
     </h1>
+    <a class="u-url hidden" href={new URL(getPath(post.id, post.filePath), SITE.website).href}>Permalink</a>
     <div class="my-2 flex items-center gap-2">
-      <Datetime {pubDatetime} {modDatetime} {timezone} size="lg" />
+      <Datetime {pubDatetime} {modDatetime} {timezone} size="lg" showMicroformat={true} />
       <span
         aria-hidden="true"
         class:list={[
@@ -107,9 +119,14 @@ const nextPost =
       >
       <EditPost {hideEditPost} {post} class="max-sm:hidden" />
     </div>
+    <p class="p-summary hidden">{description}</p>
+    {/* Syndication links for POSSE (hidden, for microformats) */}
+    {syndication && syndication.map(url => (
+      <a class="u-syndication hidden" href={url}>{url}</a>
+    ))}
     <article
       id="article"
-      class="app-prose mt-8 w-full max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"
+      class="e-content app-prose mt-8 w-full max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"
     >
       <Content />
     </article>
@@ -125,6 +142,8 @@ const nextPost =
     <BackToTopButton />
 
     <ShareLinks />
+
+    <Webmentions url={postUrl} />
 
     <hr class="my-6 border-dashed" />
 

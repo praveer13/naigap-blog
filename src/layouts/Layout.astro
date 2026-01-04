@@ -114,6 +114,13 @@ const structuredData = {
       href={new URL("rss.xml", Astro.site)}
     />
 
+    <!-- Webmention discovery -->
+    <link rel="webmention" href="https://webmention.io/blog.naigap.com/webmention" />
+    <link rel="pingback" href="https://webmention.io/blog.naigap.com/xmlrpc" />
+
+    <!-- IndieAuth -->
+    <link rel="me" href="https://x.com/praveer_n" />
+
     <meta name="theme-color" content="" />
 
     {

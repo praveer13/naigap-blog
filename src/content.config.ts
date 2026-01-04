@@ -20,6 +20,8 @@ const blog = defineCollection({
       canonicalURL: z.string().optional(),
       hideEditPost: z.boolean().optional(),
       timezone: z.string().optional(),
+      // POSSE: URLs where this post was syndicated (Twitter, Mastodon, etc.)
+      syndication: z.array(z.string().url()).optional(),
     }),
 });
 
