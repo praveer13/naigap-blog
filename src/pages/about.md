@@ -3,35 +3,30 @@ layout: ../layouts/AboutLayout.astro
 title: "About"
 ---
 
-AstroPaper is a minimal, accessible and SEO-friendly blog theme built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/).
+Hi, I'm Praveer Naigaonkar. This blog acts as a journal for my side projects, learning journeys, and thoughts about what I'm currently obsessed with.
 
-![Astro Paper](public/astropaper-og.jpg)
+## What I'm Working On
 
-AstroPaper provides a solid foundation for blogs, or even portfolios\_ with full markdown support, built-in dark mode, and a clean layout that works out-of-the-box.
+I use this space as a thought organization tool to track the projects I start and document my journey through various interests.
 
-The blog posts in this theme also serve as guides, docs or example articles\_ making AstroPaper a flexible starting point for your next content-driven site.
+### Current Projects
 
-## Features
+**Building zk-SNARK Libraries in Zig**
 
-AstroPaper comes with a set of useful features that make content publishing easy and effective:
+I'm currently working through building a toolset in Zig to create zk-SNARK libraries. This involves learning enough cryptography and Zig to make meaningful progress, and I'll be documenting my process throughout this journey.
 
-- SEO-friendly
-- Fast performance
-- Light & dark mode
-- Highly customizable
-- Organizable blog posts
-- Responsive & accessible
-- Static search with [PageFind](https://pagefind.app/)
-- Automatic social image generation
+**Health and Wellness as a Parent**
 
-and so much more.
+As a parent of two toddlers, I'm focused on improving my health through better eating habits and finding ways to workout as an extremely busy vegetarian parent. I'll share what works (and what doesn't) in balancing health goals with the demands of parenting.
 
-## Show your support
+**Playful Physics with Kids**
 
-If you like [AstroPaper](https://github.com/satnaing/astro-paper), consider giving it a star ⭐️.
+I'm working on getting my older kid (4 years old) interested in physics in a fun, playful way. This involves building projects and experiments that make science engaging and accessible for young minds.
 
-Found a bug 🐛 or have an improvement ✨ in mind? Feel free to open an [issue](https://github.com/satnaing/astro-paper/issues), submit a [pull request](https://github.com/satnaing/astro-paper/pulls) or start a [discussion](https://github.com/satnaing/astro-paper/discussions).
+## My Interests
 
-If you find this theme helpful, you can also [sponsor me on GitHub](https://github.com/sponsors/satnaing) or [buy me a coffee](https://buymeacoffee.com/satnaing) to show your support — every penny counts.
+My primary interests span across tech, programming, music, cooking, improving as a parent, and continuous health improvement. This blog reflects the intersection of these interests and serves as a record of my ongoing learning and growth.
 
-Kyay zuu! 🙏🏼
+## About This Site
+
+This site is built with [Astro](https://astro.build/) and serves as both a journal and a knowledge base for my projects and experiences.
