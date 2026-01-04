@@ -92,7 +92,7 @@ const postUrl = new URL(getPath(post.id, post.filePath), SITE.website).href;
   <BackButton />
   <main
     id="main-content"
-    class:list={["app-layout pb-12 h-entry", { "mt-8": !SITE.showBackButton }]}
+    class:list={["h-entry app-layout pb-12", { "mt-8": !SITE.showBackButton }]}
     data-pagefind-body
   >
     <!-- Hidden author h-card for microformats -->
@@ -107,9 +107,19 @@ const postUrl = new URL(getPath(post.id, post.filePath), SITE.website).href;
     >
       {title}
     </h1>
-    <a class="u-url hidden" href={new URL(getPath(post.id, post.filePath), SITE.website).href}>Permalink</a>
+    <a
+      class="u-url hidden"
+      href={new URL(getPath(post.id, post.filePath), SITE.website).href}
+      >Permalink</a
+    >
     <div class="my-2 flex items-center gap-2">
-      <Datetime {pubDatetime} {modDatetime} {timezone} size="lg" showMicroformat={true} />
+      <Datetime
+        {pubDatetime}
+        {modDatetime}
+        {timezone}
+        size="lg"
+        showMicroformat={true}
+      />
       <span
         aria-hidden="true"
         class:list={[
@@ -121,9 +131,14 @@ const postUrl = new URL(getPath(post.id, post.filePath), SITE.website).href;
     </div>
     <p class="p-summary hidden">{description}</p>
     {/* Syndication links for POSSE (hidden, for microformats) */}
-    {syndication && syndication.map(url => (
-      <a class="u-syndication hidden" href={url}>{url}</a>
-    ))}
+    {
+      syndication &&
+        syndication.map(url => (
+          <a class="u-syndication hidden" href={url}>
+            {url}
+          </a>
+        ))
+    }
     <article
       id="article"
       class="e-content app-prose mt-8 w-full max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"

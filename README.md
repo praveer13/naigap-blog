@@ -20,14 +20,14 @@ Built with [Astro](https://astro.build/) and [TailwindCSS](https://tailwindcss.c
 
 ### Commands
 
-| Command            | Action                                      |
-| :----------------- | :------------------------------------------ |
-| `npm install`      | Install dependencies                        |
-| `npm run dev`      | Start dev server at `localhost:4321`        |
-| `npm run build`    | Build production site to `./dist/`          |
-| `npm run preview`  | Preview build locally before deploying      |
-| `npm run format`   | Format code with Prettier                   |
-| `npm run lint`     | Lint with ESLint                            |
+| Command           | Action                                 |
+| :---------------- | :------------------------------------- |
+| `npm install`     | Install dependencies                   |
+| `npm run dev`     | Start dev server at `localhost:4321`   |
+| `npm run build`   | Build production site to `./dist/`     |
+| `npm run preview` | Preview build locally before deploying |
+| `npm run format`  | Format code with Prettier              |
+| `npm run lint`    | Lint with ESLint                       |
 
 ## License
 

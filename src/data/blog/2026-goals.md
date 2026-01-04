@@ -28,6 +28,7 @@ Before diving into the cryptography implementation, I'm building a solid foundat
 **Ziglings**: Working through the entire ziglings exercise set to internalize the language's patterns, memory model, and error handling.
 
 **Zig Standard Library Deep Dive**: Reading and annotating Zig's crypto primitives implementations (`std.crypto`). For each module, I'll write explanatory notes with:
+
 - Visual diagrams of data structures and memory layouts
 - Animations showing algorithm execution flow
 - Step-by-step breakdowns of mathematical operations
@@ -40,26 +41,31 @@ This preparation phase is crucial - understanding how experienced Zig developers
 The main project is structured as an intensive learning journey:
 
 **Phase 1: The Substrate (Weeks 1-2)**
+
 - Building finite field arithmetic from scratch
 - Implementing polynomial operations for memory encoding
 - Creating the primitive data types for cryptography
 
 **Phase 2: Cryptographic Primitives (Weeks 3-4)**
+
 - Elliptic curve arithmetic
 - Building hash functions and transcript mechanisms
 - Creating constant-time implementations
 
 **Phase 3: Interactive ZK (Weeks 5-6)**
+
 - Implementing Schnorr identification protocol
 - Building a basic HTTP proxy with ZK middleware
 - Creating a rudimentary ZK-Auth server
 
 **Phase 4: SNARK Verification (Weeks 7-9)**
+
 - Implementing bilinear pairings
 - Building a Groth16 verifier
 - Integrating with SnarkJS for proof generation
 
 **Phase 5: The ZK API Firewall (Weeks 10-12)**
+
 - Policy mapping and header parsing
 - Building a complete reverse proxy
 - Implementing range proofs for real-world use cases
@@ -87,36 +93,43 @@ One of my favorite goals is getting my 4-year-old interested in physics and rela
 ### Project Ideas
 
 **Simple Machines & Mechanics**
+
 - **Ramp Races**: Building ramps at different angles to explore gravity, friction, and speed. Which angle makes the car go fastest? Why?
 - **Lever Playground**: Creating seesaws with different fulcrum positions to demonstrate mechanical advantage
 - **Pulley System**: Setting up a simple pulley to lift toys - experiencing how machines make work easier
 
 **Magnetism**
+
 - **Magnetic Fishing Game**: Fishing for magnetic objects to learn about attraction and repulsion
 - **Invisible Forces**: Using iron filings and magnets to visualize magnetic field lines
 - **Compass Building**: Making a simple compass to explore Earth's magnetic field
 
 **Balance & Center of Gravity**
+
 - **Balancing Bird**: Creating a cardboard bird that balances on a fingertip
 - **Stacking Challenge**: Building towers and learning about stability and center of mass
 - **Walking Tightrope**: Simple balance beam activities connecting to physics concepts
 
 **Water & Fluids**
+
 - **Sink or Float**: Predicting and testing which objects float, introducing density
 - **Water Wheel**: Building a simple water wheel to convert flowing water into motion
 - **Bubble Physics**: Exploring surface tension and minimal surfaces through bubble-making
 
 **Light & Shadows**
+
 - **Shadow Theater**: Using flashlights to create shadows and explore how light travels in straight lines
 - **Rainbow Maker**: Using prisms and water to split light into colors
 - **Sun Dial**: Building a simple sundial to track the sun's movement
 
 **Sound & Vibrations**
+
 - **String Telephone**: Exploring how vibrations travel through materials
 - **Homemade Instruments**: Creating simple drums, shakers, and string instruments to learn about pitch and amplitude
 - **Tuning Fork Play**: Feeling vibrations and seeing them create ripples in water
 
 **Air & Pressure**
+
 - **Parachute Drop**: Making parachutes to explore air resistance
 - **Balloon Rockets**: Launching balloon rockets along string to demonstrate Newton's third law
 - **Paper Airplane Lab**: Testing different designs to learn about lift and drag
