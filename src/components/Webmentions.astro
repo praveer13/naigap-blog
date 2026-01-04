@@ -1,0 +1,202 @@
+---
+import webmentionsData from "@/data/webmentions.json";
+
+interface Props {
+  url: string;
+}
+
+interface WebmentionAuthor {
+  type: string;
+  name: string;
+  photo?: string;
+  url?: string;
+}
+
+interface Webmention {
+  type: string;
+  author?: WebmentionAuthor;
+  url: string;
+  "wm-id": number;
+  "wm-source": string;
+  "wm-target": string;
+  "wm-property": "like-of" | "repost-of" | "in-reply-to" | "mention-of" | "bookmark-of";
+  "wm-received": string;
+  content?: {
+    html?: string;
+    text?: string;
+  };
+  published?: string;
+}
+
+const { url } = Astro.props;
+
+// Filter webmentions for this specific URL
+const mentions = (webmentionsData.children as Webmention[]).filter(
+  mention => mention["wm-target"] === url || mention["wm-target"] === url + "/"
+);
+
+// Group by type
+const likes = mentions.filter(m => m["wm-property"] === "like-of");
+const reposts = mentions.filter(m => m["wm-property"] === "repost-of");
+const replies = mentions.filter(m => m["wm-property"] === "in-reply-to");
+const otherMentions = mentions.filter(
+  m => m["wm-property"] === "mention-of" || m["wm-property"] === "bookmark-of"
+);
+
+const hasInteractions = mentions.length > 0;
+---
+
+{hasInteractions && (
+  <div class="webmentions mt-8">
+    <h2 class="text-xl font-bold mb-4">Webmentions</h2>
+
+    {/* Likes */}
+    {likes.length > 0 && (
+      <div class="likes mb-6">
+        <h3 class="text-lg font-semibold mb-2">
+          {likes.length} {likes.length === 1 ? "Like" : "Likes"}
+        </h3>
+        <div class="flex flex-wrap gap-1">
+          {likes.map(like => (
+            <a
+              href={like.author?.url || like.url}
+              title={like.author?.name || "Anonymous"}
+              class="inline-block"
+              rel="nofollow ugc"
+            >
+              {like.author?.photo ? (
+                <img
+                  src={like.author.photo}
+                  alt={like.author.name || ""}
+                  class="size-8 rounded-full"
+                  loading="lazy"
+                />
+              ) : (
+                <span class="size-8 rounded-full bg-muted inline-flex items-center justify-center text-xs">
+                  {(like.author?.name || "?")[0]}
+                </span>
+              )}
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {/* Reposts */}
+    {reposts.length > 0 && (
+      <div class="reposts mb-6">
+        <h3 class="text-lg font-semibold mb-2">
+          {reposts.length} {reposts.length === 1 ? "Repost" : "Reposts"}
+        </h3>
+        <div class="flex flex-wrap gap-1">
+          {reposts.map(repost => (
+            <a
+              href={repost.author?.url || repost.url}
+              title={repost.author?.name || "Anonymous"}
+              class="inline-block"
+              rel="nofollow ugc"
+            >
+              {repost.author?.photo ? (
+                <img
+                  src={repost.author.photo}
+                  alt={repost.author.name || ""}
+                  class="size-8 rounded-full"
+                  loading="lazy"
+                />
+              ) : (
+                <span class="size-8 rounded-full bg-muted inline-flex items-center justify-center text-xs">
+                  {(repost.author?.name || "?")[0]}
+                </span>
+              )}
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {/* Replies */}
+    {replies.length > 0 && (
+      <div class="replies mb-6">
+        <h3 class="text-lg font-semibold mb-2">
+          {replies.length} {replies.length === 1 ? "Reply" : "Replies"}
+        </h3>
+        <ul class="space-y-4">
+          {replies.map(reply => (
+            <li class="flex gap-3 p-3 rounded-lg bg-muted/30">
+              <a
+                href={reply.author?.url || reply.url}
+                class="flex-shrink-0"
+                rel="nofollow ugc"
+              >
+                {reply.author?.photo ? (
+                  <img
+                    src={reply.author.photo}
+                    alt={reply.author.name || ""}
+                    class="size-10 rounded-full"
+                    loading="lazy"
+                  />
+                ) : (
+                  <span class="size-10 rounded-full bg-muted inline-flex items-center justify-center">
+                    {(reply.author?.name || "?")[0]}
+                  </span>
+                )}
+              </a>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 mb-1">
+                  <a
+                    href={reply.author?.url || reply.url}
+                    class="font-medium hover:underline"
+                    rel="nofollow ugc"
+                  >
+                    {reply.author?.name || "Anonymous"}
+                  </a>
+                  {reply.published && (
+                    <time class="text-sm opacity-70" datetime={reply.published}>
+                      {new Date(reply.published).toLocaleDateString()}
+                    </time>
+                  )}
+                </div>
+                {reply.content?.text && (
+                  <p class="text-sm opacity-90 break-words">
+                    {reply.content.text.length > 280
+                      ? reply.content.text.slice(0, 280) + "..."
+                      : reply.content.text}
+                  </p>
+                )}
+                <a
+                  href={reply.url}
+                  class="text-xs text-accent hover:underline mt-1 inline-block"
+                  rel="nofollow ugc"
+                >
+                  View original
+                </a>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    {/* Other mentions */}
+    {otherMentions.length > 0 && (
+      <div class="other-mentions">
+        <h3 class="text-lg font-semibold mb-2">
+          {otherMentions.length} {otherMentions.length === 1 ? "Mention" : "Mentions"}
+        </h3>
+        <ul class="space-y-2">
+          {otherMentions.map(mention => (
+            <li>
+              <a
+                href={mention.url}
+                class="text-sm hover:underline text-accent"
+                rel="nofollow ugc"
+              >
+                {mention.author?.name || new URL(mention.url).hostname}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </div>
+)}

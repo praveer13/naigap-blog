@@ -1,7 +1,7 @@
 export const SITE = {
-  website: "https://astro-paper.pages.dev/", // replace this with your deployed domain
+  website: "https://blog.naigap.com/",
   author: "Praveer Naigaonkar",
-  profile: "https://astro-paper.pages.dev/",
+  profile: "https://blog.naigap.com/",
   desc: "A personal journal of side projects, continuous learning, parenting adventures, and thoughts on tech, health, and life.",
   title: "Praveer's Journal",
   ogImage: "astropaper-og.jpg",
